@@ -1,33 +1,18 @@
 ---
-import Hero from '../components/Hero.tsx';
-import BenefitGrid from '../components/BenefitGrid.tsx';
-import ConversionSection from '../components/ConversionSection.tsx';
-
-const content = await import('../../content/solar-roi-calculator.json');
+import FloodMap from '../components/FloodMap';
+import '../styles/flood-map.css';
+export const prerender = true;
 ---
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{content.name}</title>
-	</head>
-	<body>
-		<Hero
-			headline={content.headline}
-			subheadline={content.subheadline}
-			buttonText={content.buttonText}
-			primaryColor={content.primaryColor}
-			heroImage={content.heroImage}
-			onCtaClick={() => console.log('CTA clicked')}
-		/>
-		<BenefitGrid benefits={content.benefits} />
-		<ConversionSection
-			emailPlaceholder={content.emailPlaceholder}
-			buttonText={content.buttonText}
-			pricingTiers={content.pricingTiers}
-		/>
-	</body>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Explore simplified Flood Zone 2 and 3 mapping across England. Search an English postcode and inspect mapped flood zones." />
+    <meta name="theme-color" content="#102b3a" />
+    <title>Flood Atlas — England flood-zone explorer</title>
+  </head>
+  <body>
+    <FloodMap client:only="react" />
+    <noscript>This interactive flood-zone explorer requires JavaScript. Visit the Environment Agency flood map for planning for official information.</noscript>
+  </body>
 </html>

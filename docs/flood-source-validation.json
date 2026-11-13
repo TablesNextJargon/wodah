@@ -1,0 +1,26 @@
+{
+  "source": "/home/hadow/Downloads/Flood_Zones_2_3_Rivers_and_Sea.geojson",
+  "source_bytes": 15773778688,
+  "lexical_coordinate_pair_count": 356860517,
+  "lexical_bounds": [
+    -6.366580965166898,
+    49.88224305617522,
+    1.763601627366952,
+    55.8116343134361
+  ],
+  "sample": {
+    "features": 1000,
+    "vertices": 682459,
+    "empty": 0,
+    "invalid": 0
+  },
+  "sample_geometry_types": {
+    "MultiPolygon": 1000
+  },
+  "invalid_sample_feature_indexes_zero_based": [],
+  "sample_method": "First N features, not a random or geographically representative sample",
+  "limits": "Full-file lexical coordinate-pair scan; not full JSON or national geometry validation. Property inventory is separate.",
+  "elapsed_seconds": 6,
+  "lexical_method": "Full-file C++17 coordinate-pair scanner, 8 MiB blocks plus 256-byte carry; quoted strings skipped; all 15,773,778,688 bytes scanned",
+  "elapsed_seconds_scope": "Python sample and report only; compiled bounds scan performed separately"
+}

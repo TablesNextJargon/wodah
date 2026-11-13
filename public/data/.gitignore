@@ -1,0 +1,5 @@
+# Complete national GeoJSON is an intermediate for the vector-tile build.
+# Keep the generated browser delivery assets separately.
+flood-zones.geojson
+*.geojson.tmp
+*.geojsonl

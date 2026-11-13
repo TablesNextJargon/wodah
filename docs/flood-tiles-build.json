@@ -1,0 +1,140 @@
+{
+  "tippecanoe": "2.79.0",
+  "source_features": 415408,
+  "source_bytes": 15773778688,
+  "archive_bytes": 436329057,
+  "sha256": "7d0c6cc226b8c8618071b53b83db7f15ebc14fbc5beef009db7c501e1107bbff",
+  "static_chunks": 14,
+  "source_layer": "flood_zones",
+  "header": {
+    "specVersion": 3,
+    "rootDirectoryOffset": 127,
+    "rootDirectoryLength": 14950,
+    "jsonMetadataOffset": 15077,
+    "jsonMetadataLength": 832,
+    "leafDirectoryOffset": 15909,
+    "leafDirectoryLength": 0,
+    "tileDataOffset": 15909,
+    "tileDataLength": 436313148,
+    "numAddressedTiles": 5566,
+    "numTileEntries": 5566,
+    "numTileContents": 5566,
+    "clustered": true,
+    "internalCompression": 2,
+    "tileCompression": 2,
+    "tileType": 1,
+    "minZoom": 4,
+    "maxZoom": 12,
+    "minLon": -6.366581,
+    "minLat": 49.882243,
+    "maxLon": 1.763602,
+    "maxLat": 55.811634,
+    "centerZoom": 12,
+    "centerLon": -2.944336,
+    "centerLat": 51.041386
+  },
+  "metadata": {
+    "name": "England Flood Zones 2 and 3",
+    "format": "pbf",
+    "type": "overlay",
+    "description": "Simplified planning flood extents from supplied EA GeoJSON; source date unverified.",
+    "version": "2",
+    "attribution": "Flood zones © Environment Agency",
+    "strategies": [
+      {},
+      {},
+      {},
+      {},
+      {
+        "tiny_polygons": 492234
+      },
+      {
+        "tiny_polygons": 448478
+      },
+      {
+        "tiny_polygons": 430385
+      },
+      {
+        "tiny_polygons": 427555
+      },
+      {
+        "tiny_polygons": 409376
+      },
+      {
+        "tiny_polygons": 398368
+      },
+      {
+        "tiny_polygons": 384391
+      },
+      {
+        "tiny_polygons": 367420
+      },
+      {}
+    ],
+    "generator": "tippecanoe v2.79.0",
+    "generator_options": "/tmp/wodah-gis-tools/extracted/usr/bin/tippecanoe -o /tmp/wodah-flood-zones.pmtiles -l flood_zones -Z4 -z12 --no-feature-limit --no-tile-size-limit --no-tiny-polygon-reduction-at-maximum-zoom '--include=flood_zone' '--include=origin' '--include=flood_source' '--attribution=Flood zones © Environment Agency' '--name=England Flood Zones 2 and 3' '--description=Simplified planning flood extents from supplied EA GeoJSON; source date unverified.' '--progress-interval=10' /home/hadow/Downloads/Flood_Zones_2_3_Rivers_and_Sea.geojson",
+    "antimeridian_adjusted_bounds": "-6.366581,49.882243,1.763602,55.811634",
+    "vector_layers": [
+      {
+        "id": "flood_zones",
+        "description": "",
+        "minzoom": 4,
+        "maxzoom": 12,
+        "fields": {
+          "flood_source": "String",
+          "flood_zone": "String",
+          "origin": "String"
+        }
+      }
+    ],
+    "tilestats": {
+      "layerCount": 1,
+      "layers": [
+        {
+          "layer": "flood_zones",
+          "count": 415408,
+          "geometry": "Polygon",
+          "attributeCount": 3,
+          "attributes": [
+            {
+              "attribute": "flood_source",
+              "count": 4,
+              "type": "string",
+              "values": [
+                "river",
+                "river and sea",
+                "sea",
+                "unknown"
+              ]
+            },
+            {
+              "attribute": "flood_zone",
+              "count": 2,
+              "type": "string",
+              "values": [
+                "FZ2",
+                "FZ3"
+              ]
+            },
+            {
+              "attribute": "origin",
+              "count": 9,
+              "type": "string",
+              "values": [
+                "direct rainfall model",
+                "direct rainfall model and recorded",
+                "local evidence",
+                "local evidence and recorded",
+                "modelled",
+                "modelled and direct rainfall model",
+                "modelled and direct rainfall model and recorded",
+                "modelled and recorded",
+                "recorded"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

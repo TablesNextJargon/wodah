@@ -22,3 +22,13 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Local geospatial processing environment and source data
+.venv-flood/
+.vercel/
+*.pmtiles
+*.mbtiles
+!public/data/flood-zones.pmtiles
+.data-build/
+test-results/
+__pycache__/

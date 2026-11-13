@@ -1,0 +1,28 @@
+{
+  "file": "Flood_Zones_2_3_Rivers_and_Sea.geojson",
+  "bytes": 15773778688,
+  "method": "Lexical property inventory; not geometry validation",
+  "properties": {
+    "origin": {
+      "modelled": 268310,
+      "modelled and direct rainfall model": 30702,
+      "modelled and recorded": 64340,
+      "direct rainfall model": 29010,
+      "recorded": 14494,
+      "direct rainfall model and recorded": 1739,
+      "local evidence": 646,
+      "local evidence and recorded": 78,
+      "modelled and direct rainfall model and recorded": 6089
+    },
+    "flood_zone": {
+      "FZ3": 217685,
+      "FZ2": 197723
+    },
+    "flood_source": {
+      "river and sea": 80179,
+      "sea": 43845,
+      "river": 290327,
+      "unknown": 1056
+    }
+  }
+}

@@ -1,15 +1,62 @@
-# The Identity: A "Smoke Test" Factory
+# Wodah — England flood map
 
-Wodah is a multi-tenant landing page framework built on the Astro framework, integrated with Supabase for data, and hosted on Vercel.
+An interactive England map of Flood Zones 2 and 3 from rivers and the sea,
+built with Astro 5, React, MapLibre GL JS 6, and PMTiles. It is a generalized
+visual overview, unsuitable for property-level flood-risk decisions. Coverage
+is England, not the whole UK, and does not include every source of flooding.
 
-Its primary purpose is to solve the "Founder's Trap": spending months building a product that no one wants. Instead, Wodah allows you to launch 5–10 different product ideas (niches) in minutes to see which one people actually sign up for.
+Switch between the OpenFreeMap cartographic basemap and Esri World Imagery
+satellite/aerial imagery. Flood filters, opacity and inspection work on both.
 
-## How the Architecture Works
+## Run locally
 
-The project uses a Data-Driven Design pattern. You don't build five websites; you build one engine that reads from a "Niche Configuration."
+```sh
+npm ci
+npm run dev
+```
 
-- **The Config (The Brain)**: A JSON file or Supabase table where you list your 5 niche ideas, their headlines, and their unique benefits.
+Build and check types with:
 
-- **The Engine (Astro)**: A set of reusable UI components (Hero, CTA, Features) that dynamically change their look and text based on which URL is visited.
+```sh
+npm run build
+npm run typecheck
+```
 
-- **The Vault (Supabase)**: A centralized database that captures leads (emails) and tags them by the niche they came from.
+The map needs the generated data assets in `public/data/`. Application builds
+do not regenerate the national dataset.
+
+## Flood data
+
+Tippecanoe reads the original 15.8 GB GeoJSON directly and builds a PMTiles
+archive at zooms 4–12, retaining `flood_zone`, `origin`, and `flood_source`.
+The archive exceeds 100 MB, so static delivery uses files of at most **32 MiB**
+plus the manifest at `/data/flood-zones.json`. The browser loads the manifest
+and required archive segments rather than the national GeoJSON. Keep the
+manifest and all its referenced segments together when copying or publishing.
+
+Rebuild offline with Python 3 and Tippecanoe 2.79 or later:
+
+```sh
+python3 scripts/build_flood_tiles.py \
+  /home/hadow/Downloads/Flood_Zones_2_3_Rivers_and_Sea.geojson
+```
+
+Use `--tippecanoe /path/to/tippecanoe` if it is not on `PATH`. The source file
+stays outside the repository and public assets. See [data notes](docs/flood-data-notes.md)
+for lineage, validation, generalization limits, and licence checks required
+before redistribution.
+
+## Verification
+
+The build and type check pass. Browser verification covers real flood-tile
+byte-range requests, polygon inspection, filters, opacity, satellite switching,
+postcode response handling and the mobile tools panel.
+
+```sh
+node --experimental-strip-types --test scripts/flood-tile-source.test.mjs
+PLAYWRIGHT_MODULE=/path/to/playwright node scripts/browser-smoke.cjs
+```
+
+The browser check saves screenshots under ignored `test-results/`. Postcode
+responses are intercepted in that check; basemap, imagery and flood tiles are
+loaded from the real services and generated assets.

@@ -38,7 +38,7 @@ const AnalyticsTracker: React.FC<AnalyticsTrackerProps> = ({ nicheId, gaId }) =>
     return () => {
       document.removeEventListener('click', handleClick);
     };
-  }, [nicheId]);
+  }, [nicheId, gaId]);
 
   return null; // This component doesn't render anything
 };
