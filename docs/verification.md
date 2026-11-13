@@ -22,4 +22,11 @@ them requires a separate major framework/adapter upgrade; no forced major
 upgrade was applied. The new root map page is prerendered, with no data-conversion
 or map API server work at runtime. Existing unrelated routes remain in the repo.
 
-Deployment is pending authentication to the Vercel project owning `wodah.com`.
+The app is deployed on Vercel project `trycvpilot`, with `wodah.com` and
+`www.wodah.com` assigned. The project is connected to this repository's main
+branch. Hosted PMTiles manifest and HTTP 206 byte ranges match the local assets.
+The previous terrain deployment remains available in the project's history.
+
+Vercel CLI initialized a Protection Bypass for Automation secret while testing
+the protected preview. Its value was not printed or committed; access protection
+was not disabled.

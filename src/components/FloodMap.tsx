@@ -56,6 +56,7 @@ const FloodMap = () => {
   const [dataError, setDataError] = useState(false);
   const [mapError, setMapError] = useState('');
   const [zones, setZones] = useState({ FZ2: true, FZ3: true });
+  const zonesRef = useRef(zones);
   const [opacity, setOpacity] = useState(65);
   const [selection, setSelection] = useState<Selection | null>(null);
   const [postcode, setPostcode] = useState('');
@@ -67,6 +68,12 @@ const FloodMap = () => {
   const closeTools = (): void => {
     setPanelOpen(false);
     requestAnimationFrame(() => mapRef.current?.getCanvas().focus());
+  };
+
+  const handleZoneChange = (zone: 'FZ2' | 'FZ3', checked: boolean): void => {
+    zonesRef.current = { ...zonesRef.current, [zone]: checked };
+    setZones(zonesRef.current);
+    setSelection(null);
   };
 
   useEffect(() => {
@@ -210,7 +217,8 @@ const FloodMap = () => {
       }
     });
     map.on('click', (event) => {
-      const layers = ['FZ3', 'FZ2'].filter((id) => map.getLayer(id));
+      const layers = (['FZ3', 'FZ2'] as const)
+        .filter((id) => zonesRef.current[id] && map.getLayer(id));
       if (!layers.length) return;
       const feature: MapGeoJSONFeature | undefined = map
         .queryRenderedFeatures(event.point, { layers })
@@ -234,7 +242,8 @@ const FloodMap = () => {
       }
     });
     map.on('mousemove', (event) => {
-      const layers = ['FZ2', 'FZ3'].filter((id) => map.getLayer(id));
+      const layers = (['FZ2', 'FZ3'] as const)
+        .filter((id) => zonesRef.current[id] && map.getLayer(id));
       map.getCanvas().style.cursor =
         layers.length &&
         map.queryRenderedFeatures(event.point, { layers }).length
@@ -454,7 +463,7 @@ const FloodMap = () => {
                 type="checkbox"
                 checked={zones.FZ2}
                 onChange={(event) =>
-                  setZones({ ...zones, FZ2: event.target.checked })
+                  handleZoneChange('FZ2', event.target.checked)
                 }
               />
             </label>
@@ -468,7 +477,7 @@ const FloodMap = () => {
                 type="checkbox"
                 checked={zones.FZ3}
                 onChange={(event) =>
-                  setZones({ ...zones, FZ3: event.target.checked })
+                  handleZoneChange('FZ3', event.target.checked)
                 }
               />
             </label>
